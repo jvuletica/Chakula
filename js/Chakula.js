@@ -3,16 +3,9 @@ var Chakula = new angular.module("Chakula", ["ngRoute"]);
 Chakula.service("ConnectionService", ConnectionService);
 Chakula.controller("LoginController", LoginController);
 Chakula.controller("InterfaceController", InterfaceController);
-Chakula.directive("test", function() {
-  return {
-    restrict: "E",
-    link: function(scope, element, attrs) {
-      element.bind("click", function() {
-        alert("radi");
-      });
-    }
-  }
-});
+Chakula.directive("receivedRequests", receivedRequests);
+Chakula.directive("sentRequests", sentRequests);
+Chakula.directive("myContacts", myContacts);
 
 var configFunction = function($routeProvider) {
   $routeProvider.

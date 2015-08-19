@@ -1,7 +1,7 @@
-<div id="sidebar" ng-click="isSidebarActive = !isSidebarActive" ng-class="isSidebarActive ? 'active-sidebar' : ''">
+<div id="sidebar" ng-class="isSidebarActive ? 'active-sidebar' : ''">
   <div ng-switch on="condition" id="sidebar-controls">
     <div ng-switch-default>
-      <img class="control-btn" src="../images/menu3.png" ng-click="toggleSidebar()">
+      <img class="control-btn" src="../images/menu3.png" ng-click="isSidebarActive = !isSidebarActive">
       <label>Chakula</label>
       <img src="../images/addcontact2.png" ng-click="toggleAddContact()">
     </div>
@@ -15,21 +15,9 @@
     </div>
   </div>
   <ul>
-    <li ng-repeat="(key, object) in sent_requests">
-      <label ng-bind="key"></label>
-      <img src="../images/question.png">
-    </li>
-    <li ng-repeat="(key, object) in received_requests">
-      <label ng-bind="key"></label>
-      <img class="confirm-btns" src="../images/no.png"
-        ng-click="respondToRequest(key, '--rejected_request--')">
-      <img class="confirm-btns" src="../images/yes.png"
-       ng-click="respondToRequest(key, '--accepted_request--')">
-    </li>
-    <li ng-repeat="(key, object) in my_contact_list">
-      <label ng-bind="key"></label>
-    </li>
-    <test></test>
+    <li sent-requests ng-repeat="(key, object) in sent_requests"></li>
+    <li received-requests ng-repeat="(key, object) in received_requests"></li>
+    <li my-contacts ng-repeat="(key, object) in my_contacts"></li>
   </ul>
 </div>
 <div id="chat-interface-wrapper" ng-class="isSidebarActive ? 'active-sidebar' : ''">

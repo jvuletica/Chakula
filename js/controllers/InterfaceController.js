@@ -1,7 +1,7 @@
 var InterfaceController = function ($scope, ConnectionService) {
 	$scope.received_requests = {};
 	$scope.sent_requests = {};
-	$scope.my_contact_list = {};
+	$scope.my_contacts = {};
 	function reportNewConnection(peer_name) {
 		$scope.$apply(function() {
 			$scope.received_requests[peer_name] = {};
@@ -14,7 +14,7 @@ var InterfaceController = function ($scope, ConnectionService) {
 		$scope.$apply(function() {
 			delete $scope.sent_requests[name];
 			if(response == "--accepted_request--") {
-				$scope.my_contact_list[name] = {};
+				$scope.my_contacts[name] = {};
 			}
 		});
 	}
@@ -48,7 +48,7 @@ var InterfaceController = function ($scope, ConnectionService) {
 	$scope.respondToRequest = function(name, response) {
 		delete $scope.received_requests[name];
 		if(response == "--accepted_request--") {
-			$scope.my_contact_list[name] = {};
+			$scope.my_contacts[name] = {};
 		}
 		sendMessage(name, response);
 	};
