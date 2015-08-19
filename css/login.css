@@ -1,0 +1,54 @@
+body {
+  background-color: #292929;
+  color: #A9A9A9;
+}
+#logo {
+  height: 90%;
+}
+#logo-wrapper {
+  text-align: center;
+  height: 100%;
+}
+#logo-wrapper img {
+  display: block;
+  margin: 0 auto;
+}
+#login-controls {
+  height: 10%;
+}
+#login-controls > * {
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  height: 100%;
+  border: 0;
+  outline: none;
+}
+#login-controls input {
+  height: 100%;
+  border-radius: 0;
+  border-color: #607D8B;
+  background-color: #292929;
+  border: none;
+  box-shadow: none;
+  transition: background-color .25s linear;
+}
+#login-controls input:focus {
+  background: white;
+  transition: background-color .25s linear;
+}
+#login-controls button {
+  background-color: #455A64;
+  color:white;
+  border: none;
+  outline: none;
+  transition: background-color .25s linear;
+}
+#login-controls button:hover {
+  transition: background-color .25s linear;
+  background-color: #37474F;
+}
+#login-controls button:active {
+  transition: opacity .15s linear;
+  opacity: 0.5;
+}
