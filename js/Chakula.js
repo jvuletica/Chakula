@@ -3,12 +3,12 @@ var Chakula = new angular.module("Chakula", ["ngRoute"]);
 Chakula.service("ConnectionService", ConnectionService);
 Chakula.controller("LoginController", LoginController);
 Chakula.controller("InterfaceController", InterfaceController);
-Chakula.directive("toggleClass", function() {
+Chakula.directive("test", function() {
   return {
     restrict: "E",
     link: function(scope, element, attrs) {
       element.bind("click", function() {
-        element.toggleClass(attrs.toggleClass);
+        alert("radi");
       });
     }
   }
@@ -17,12 +17,12 @@ Chakula.directive("toggleClass", function() {
 var configFunction = function($routeProvider) {
   $routeProvider.
   when("/", {
-    templateUrl: "login.tpl",
+    templateUrl: "login.html",
     controller: "LoginController"
   });
   $routeProvider.
     when("/interface", {
-    templateUrl: "interface.tpl",
+    templateUrl: "interface.html",
     controller: "InterfaceController"
   });
 };

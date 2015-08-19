@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Chakula</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/interface.css">
+    <script src="../js/libs/jquery-2.1.4.min.js"></script>
+    <script src="../js/libs/bootstrap.min.js"></script>
+    <script src="../js/libs/peer.min.js"></script>
+    <script src="../js/libs/angular.min.js"></script>
+    <script src="../js/libs/angular-route.min.js"></script>
+    <script src="../js/libs/angular-animate.min.js"></script>
+    <script src="../js/services/ConnectionService.js"></script>
+    <script src="../js/controllers/LoginController.js"></script>
+    <script src="../js/controllers/InterfaceController.js"></script>
+    <script src="../js/Chakula.js"></script>
+  </head>
+  <body ng-app="Chakula">
+    <div ng-view></div>
+    <script>
+      global.$ = $;
+      require("./test.js");
+    </script>
+  </body>
+</html>

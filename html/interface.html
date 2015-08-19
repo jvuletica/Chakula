@@ -1,102 +1,56 @@
-<html>
-  <head>
-    <title>Chakula</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/login.css">
-    <link rel="stylesheet" href="../css/interface.css">
-    <script src="../js/libs/jquery-2.1.4.min.js"></script>
-    <script src="../js/libs/bootstrap.min.js"></script>
-    <script src="../js/libs/peer.min.js"></script>
-    <script src="../js/libs/angular.min.js"></script>
-    <script src="../js/libs/angular-route.min.js"></script>
-    <script src="../js/libs/angular-animate.min.js"></script>
-    <script src="../js/services/ConnectionService.js"></script>
-    <script src="../js/controllers/LoginController.js"></script>
-    <script src="../js/controllers/InterfaceController.js"></script>
-    <script src="../js/Chakula.js"></script>
-  </head>
-  <body ng-app="Chakula">
-    <div ng-view></div>
-
-    <script type="text/ng-template" id="login.tpl">
-    <div class="container-fluid">
-      <div id="logo" class="row">
-        <div id="logo-wrapper" class="col-xs-12 col-sm-12 col-md-12">
-          <img src="../images/logo.png" alt="logo">
-          <h3>Chakula</h3>
-        </div>
+<div id="sidebar" ng-click="isSidebarActive = !isSidebarActive" ng-class="isSidebarActive ? 'active-sidebar' : ''">
+  <div ng-switch on="condition" id="sidebar-controls">
+    <div ng-switch-default>
+      <img class="control-btn" src="../images/menu3.png" ng-click="toggleSidebar()">
+      <label>Chakula</label>
+      <img src="../images/addcontact2.png" ng-click="toggleAddContact()">
+    </div>
+    <div ng-switch-when="add-contact">
+      <form ng-submit="addContact(target_contact)">
+        <input class="form-control" type="text" placeholder="Type contact name" ng-model="target_contact">
+      </form>
+    </div>
+    <div ng-switch-when="result">
+      <label ng-bind="contact_request_result"></label>
+    </div>
+  </div>
+  <ul>
+    <li ng-repeat="(key, object) in sent_requests">
+      <label ng-bind="key"></label>
+      <img src="../images/question.png">
+    </li>
+    <li ng-repeat="(key, object) in received_requests">
+      <label ng-bind="key"></label>
+      <img class="confirm-btns" src="../images/no.png"
+        ng-click="respondToRequest(key, '--rejected_request--')">
+      <img class="confirm-btns" src="../images/yes.png"
+       ng-click="respondToRequest(key, '--accepted_request--')">
+    </li>
+    <li ng-repeat="(key, object) in my_contact_list">
+      <label ng-bind="key"></label>
+    </li>
+    <test></test>
+  </ul>
+</div>
+<div id="chat-interface-wrapper" ng-class="isSidebarActive ? 'active-sidebar' : ''">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-md-3"></div>
+      <div id="chat-info" class="col-sm-6 col-md-6">
+        <label>Contact info</label>
       </div>
-      <div id="login-controls" class="row">
-        <form class="col-xs-8 col-sm-8 col-md-8" ng-submit="connectToServer()">
-          <input type="text" class="form-control" placeholder="Username" ng-model="username">
-        </form>
-        <button ng-click="connectToServer()" class="col-xs-4 col-sm-4 col-md-4 btn">Login</button>
+      <div id="contact-controls" class="col-sm-3 col-md-3">
+        <img src="../images/video.png">
+        <img src="../images/phone.png">
       </div>
     </div>
-    </script>
-
-    <script type="text/ng-template" id="interface.tpl">
-      <div id="sidebar" ng-click="isSidebarActive = !isSidebarActive" ng-class="isSidebarActive ? 'active-sidebar' : ''">
-        <div ng-switch on="condition" id="sidebar-controls">
-          <div ng-switch-default>
-            <img class="control-btn" src="../images/menu3.png" ng-click="toggleSidebar()">
-            <label>Chakula</label>
-            <img src="../images/addcontact2.png" ng-click="toggleAddContact()">
-          </div>
-          <div ng-switch-when="add-contact">
-            <form ng-submit="addContact(target_contact)">
-              <input class="form-control" type="text" placeholder="Type contact name" ng-model="target_contact">
-            </form>
-          </div>
-          <div ng-switch-when="result">
-            <label ng-bind="contact_request_result"></label>
-          </div>
-        </div>
-        <ul>
-          <li ng-repeat="(key, object) in sent_requests">
-            <label ng-bind="key"></label>
-            <img src="../images/question.png">
-          </li>
-          <li ng-repeat="(key, object) in received_requests">
-            <label ng-bind="key"></label>
-            <img class="confirm-btns" src="../images/no.png"
-              ng-click="respondToRequest(key, '--rejected_request--')">
-            <img class="confirm-btns" src="../images/yes.png"
-             ng-click="respondToRequest(key, '--accepted_request--')">
-          </li>
-          <li ng-repeat="(key, object) in my_contact_list">
-            <label ng-bind="key"></label>
-          </li>
-        </ul>
-      </div>
-      <div id="chat-interface-wrapper" ng-class="isSidebarActive ? 'active-sidebar' : ''">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-sm-3 col-md-3"></div>
-            <div id="chat-info" class="col-sm-6 col-md-6">
-              <label>Contact info</label>
-            </div>
-            <div id="contact-controls" class="col-sm-3 col-md-3">
-              <img src="../images/video.png">
-              <img src="../images/phone.png">
-            </div>
-          </div>
-          <div class="row">
-            <div id="chat-box" class="col-sm-12 col-md-12">contact: example text</div>
-          </div>
-          <div class="row">
-            <form id="chat-input" class="col-sm-12 col-md-12">
-              <textarea type="text" class="form-control" placeholder="Type here..." ng-keypress="checkIfEnter($event, message)" ng-bind="message"></textarea>
-            </form>
-          </div>
-        </div>
-      </div>
-    </script>
-    <script>
-      global.$ = $;
-      require("./test.js");
-    </script>
-  </body>
-</html>
+    <div class="row">
+      <div id="chat-box" class="col-sm-12 col-md-12">contact: example text</div>
+    </div>
+    <div class="row">
+      <form id="chat-input" class="col-sm-12 col-md-12">
+        <textarea type="text" class="form-control" placeholder="Type here..." ng-keypress="checkIfEnter($event, message)" ng-bind="message"></textarea>
+      </form>
+    </div>
+  </div>
+</div>
