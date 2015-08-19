@@ -29,7 +29,15 @@ var InterfaceController = function ($scope, ConnectionService) {
 
 	//sets sidebar state to active on launch
 	$scope.isSidebarActive = true;
-
+	$scope.toggleSidebar = function() {
+		$scope.isSidebarActive = !$scope.isSidebarActive;
+	};
+	$scope.log = function() {
+		console.log($scope);
+	};
+	$scope.test = function(index, selected) {
+		alert(index + " " + selected);
+	};
 	$scope.addContact = function(target_contact) {
 		ConnectionService.sendContactRequest(target_contact, receiveRequestResponse, receiveMessage);
 		updateInterfaceWithContactRequest(target_contact);

@@ -1,8 +1,8 @@
 <div id="sidebar" ng-class="isSidebarActive ? 'active-sidebar' : ''">
   <div ng-switch on="condition" id="sidebar-controls">
     <div ng-switch-default>
-      <img class="control-btn" src="../images/menu3.png" ng-click="isSidebarActive = !isSidebarActive">
-      <label>Chakula</label>
+      <img class="control-btn" src="../images/menu3.png" ng-click="toggleSidebar()">
+      <label ng-click="log()">Chakula</label>
       <img src="../images/addcontact2.png" ng-click="toggleAddContact()">
     </div>
     <div ng-switch-when="add-contact">
@@ -17,7 +17,7 @@
   <ul>
     <li sent-requests ng-repeat="(key, object) in sent_requests"></li>
     <li received-requests ng-repeat="(key, object) in received_requests"></li>
-    <li my-contacts ng-repeat="(key, object) in my_contacts"></li>
+    <li my-contacts ng-repeat="(key, object) in my_contacts" ng-class="$index == $parent.selected_contact ? 'selected-contact' : ''"></li>
   </ul>
 </div>
 <div id="chat-interface-wrapper" ng-class="isSidebarActive ? 'active-sidebar' : ''">

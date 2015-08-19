@@ -13,6 +13,13 @@ var sentRequests = function() {
 var myContacts = function() {
   return {
     restrict: "A",
+    link: function(scope, el, attrs) {
+      el.click(function() {
+        scope.$apply(function() {
+          scope.$parent.selected_contact = scope.$index;
+        });
+      });
+    },
     templateUrl: "my_contacts.html"
   }
 }
