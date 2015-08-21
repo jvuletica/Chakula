@@ -15,9 +15,9 @@
     </div>
   </div>
   <ul>
-    <li sent-requests ng-repeat="(key, object) in sent_requests"></li>
-    <li received-requests ng-repeat="(key, object) in received_requests"></li>
-    <li my-contacts ng-repeat="(key, object) in my_contacts" ng-class="$index == $parent.selected_contact ? 'selected-contact' : ''"></li>
+    <li sent-requests ng-repeat="(name, object) in sent_requests"></li>
+    <li received-requests ng-repeat="(name, object) in received_requests"></li>
+    <li my-contacts ng-repeat="(name, object) in my_contacts" ng-class="$index == $parent.selected_index ? 'selected-contact' : ''"></li>
   </ul>
 </div>
 <div id="chat-interface-wrapper" ng-class="isSidebarActive ? 'active-sidebar' : ''">
@@ -25,7 +25,7 @@
     <div class="row">
       <div class="col-sm-3 col-md-3"></div>
       <div id="chat-info" class="col-sm-6 col-md-6">
-        <label>Contact info</label>
+        <label ng-bind="selected_contact"></label>
       </div>
       <div id="contact-controls" class="col-sm-3 col-md-3">
         <img src="../images/video.png">
@@ -33,11 +33,15 @@
       </div>
     </div>
     <div class="row">
-      <div id="chat-box" class="col-sm-12 col-md-12">contact: example text</div>
+      <div id="chat-box" class="col-sm-12 col-md-12">
+        <div ng-repeat="chat in my_contacts[selected_contact].chat">
+          [{{chat.when}}] {{chat.who}}: {{chat.what}}
+        </div>
+      </div>
     </div>
     <div class="row">
-      <form id="chat-input" class="col-sm-12 col-md-12">
-        <textarea type="text" class="form-control" placeholder="Type here..." ng-keypress="checkIfEnter($event, message)" ng-bind="message"></textarea>
+      <form id="chat-input" class="col-sm-12 col-md-12" ng-submit="sendMessage(selected_contact, message)">
+        <input type="text" class="form-control" placeholder="Type here..." ng-model="message"></input>
       </form>
     </div>
   </div>

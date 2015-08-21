@@ -14,14 +14,27 @@ var InterfaceController = function ($scope, ConnectionService) {
 		$scope.$apply(function() {
 			delete $scope.sent_requests[name];
 			if(response == "--accepted_request--") {
-				$scope.my_contacts[name] = {};
+				$scope.my_contacts[name] = {"chat": []};
 			}
 		});
 	}
 	function receiveMessage(contact, message) {
-		alert(contact + " " + message);
+		if($scope.my_contacts[contact]) {
+			var date = new Date();
+			var h = date.getHours();
+			var m = date.getMinutes();
+			var s = date.getSeconds();
+			var chat_object = {
+				"who": contact,
+				"when": h + ":" + m + ":" + s,
+				"what": message
+			}
+			$scope.$apply(function() {
+				$scope.my_contacts[contact].chat.push(chat_object);
+			});
+		}
 	}
-	function sendMessage(contact, message) {
+	function sendResponse(contact, message) {
 		ConnectionService.sendMessage(contact, message);
 	}
 	//starts listening for connections
@@ -34,9 +47,6 @@ var InterfaceController = function ($scope, ConnectionService) {
 	};
 	$scope.log = function() {
 		console.log($scope);
-	};
-	$scope.test = function(index, selected) {
-		alert(index + " " + selected);
 	};
 	$scope.addContact = function(target_contact) {
 		ConnectionService.sendContactRequest(target_contact, receiveRequestResponse, receiveMessage);
@@ -56,15 +66,23 @@ var InterfaceController = function ($scope, ConnectionService) {
 	$scope.respondToRequest = function(name, response) {
 		delete $scope.received_requests[name];
 		if(response == "--accepted_request--") {
-			$scope.my_contacts[name] = {};
+			$scope.my_contacts[name] = {"chat": []};
 		}
-		sendMessage(name, response);
+		sendResponse(name, response);
 	};
-	$scope.checkIfEnter = function(event, message) {
-		if(event.which === 13) {
-			sendMessage(name, message);
-			$scope.message = "";
+	$scope.sendMessage = function(contact, message) {
+		ConnectionService.sendMessage(contact, message);
+		var date = new Date();
+		var h = date.getHours();
+		var m = date.getMinutes();
+		var s = date.getSeconds();
+		var chat_object = {
+			"who": "me",
+			"when": h + ":" + m + ":" + s,
+			"what": message
 		}
+		$scope.my_contacts[contact].chat.push(chat_object);
+		delete $scope.message;
 	}
 
 };

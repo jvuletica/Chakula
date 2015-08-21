@@ -72,14 +72,14 @@ label {
   margin-top: 6px;
 }
 #chat-box {
-  height: 76%;
+  height: 80%;
 }
 #chat-input {
   margin: 0;
   padding: 0;
-  height: 14%;
+  height: 10%;
 }
-#chat-input textarea{
+#chat-input input{
   resize: none;
   height: 100%;
   border-radius: 0;
