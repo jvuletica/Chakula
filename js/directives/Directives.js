@@ -18,6 +18,7 @@ var myContacts = function() {
         scope.$apply(function() {
           scope.$parent.selected_index = scope.$index;
           scope.$parent.selected_contact = scope.name;
+          scope.object.unread = false;
         });
       });
     },

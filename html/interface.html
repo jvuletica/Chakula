@@ -1,4 +1,4 @@
-<div id="sidebar" ng-class="isSidebarActive ? 'active-sidebar' : ''">
+<div id="sidebar" ng-class="{'active-sidebar' : isSidebarActive}">
   <div ng-switch on="condition" id="sidebar-controls">
     <div ng-switch-default>
       <img class="control-btn" src="../images/menu3.png" ng-click="toggleSidebar()">
@@ -17,10 +17,10 @@
   <ul>
     <li sent-requests ng-repeat="(name, object) in sent_requests"></li>
     <li received-requests ng-repeat="(name, object) in received_requests"></li>
-    <li my-contacts ng-repeat="(name, object) in my_contacts" ng-class="$index == $parent.selected_index ? 'selected-contact' : ''"></li>
+    <li my-contacts ng-repeat="(name, object) in my_contacts" ng-class="{'selected-contact': $index == $parent.selected_index}"></li>
   </ul>
 </div>
-<div id="chat-interface-wrapper" ng-class="isSidebarActive ? 'active-sidebar' : ''">
+<div id="chat-interface-wrapper" ng-class="{'active-sidebar' : isSidebarActive}">
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-3 col-md-3"></div>

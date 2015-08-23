@@ -14,7 +14,10 @@ var InterfaceController = function ($scope, ConnectionService) {
 		$scope.$apply(function() {
 			delete $scope.sent_requests[name];
 			if(response == "--accepted_request--") {
-				$scope.my_contacts[name] = {"chat": []};
+				$scope.my_contacts[name] = {
+					"chat": [],
+					"unread": false
+				};
 			}
 		});
 	}
@@ -31,6 +34,9 @@ var InterfaceController = function ($scope, ConnectionService) {
 			}
 			$scope.$apply(function() {
 				$scope.my_contacts[contact].chat.push(chat_object);
+				if($scope.selected_contact != contact) {
+					$scope.my_contacts[contact].unread = true;
+				}
 			});
 		}
 	}
@@ -66,7 +72,10 @@ var InterfaceController = function ($scope, ConnectionService) {
 	$scope.respondToRequest = function(name, response) {
 		delete $scope.received_requests[name];
 		if(response == "--accepted_request--") {
-			$scope.my_contacts[name] = {"chat": []};
+			$scope.my_contacts[name] = {
+				"chat": [],
+				"unread": false
+			};
 		}
 		sendResponse(name, response);
 	};
