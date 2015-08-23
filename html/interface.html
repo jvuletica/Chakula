@@ -17,7 +17,7 @@
   <ul>
     <li sent-requests ng-repeat="(name, object) in sent_requests"></li>
     <li received-requests ng-repeat="(name, object) in received_requests"></li>
-    <li my-contacts ng-repeat="(name, object) in my_contacts" ng-class="{'selected-contact': $index == $parent.selected_index}"></li>
+    <li my-contacts ng-repeat="(name, object) in my_contacts" ng-class="{'selected-contact': $index == $parent.selected_index, 'unread': object.unread}"></li>
   </ul>
 </div>
 <div id="chat-interface-wrapper" ng-class="{'active-sidebar' : isSidebarActive}">
