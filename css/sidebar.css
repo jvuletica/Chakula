@@ -67,7 +67,11 @@
 .selected-contact {
   background-color: #455A64;
 }
+@-webkit-keyframes blink {
+  0% { border-right-color: transparent; }
+}
 .unread {
-  border-right-color: #B71C1C !important;
-  transition: border-right-color .4s linear !important;
+  -webkit-animation-name: blink;
+  -webkit-animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
 }
