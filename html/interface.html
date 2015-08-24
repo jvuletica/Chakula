@@ -6,8 +6,9 @@
       <img src="../images/addcontact2.png" ng-click="toggleAddContact()">
     </div>
     <div ng-switch-when="add-contact">
-      <form ng-submit="addContact(target_contact)">
-        <input class="form-control" type="text" placeholder="Type contact name" ng-model="target_contact">
+      <form id="add-contact-form" ng-submit="addContact(target_contact)">
+        <input class="form-control" type="text" placeholder="Add contact..." ng-model="target_contact">
+        <img ng-click="toggleAddContact()" src="../images/back.png">
       </form>
     </div>
     <div ng-switch-when="result">

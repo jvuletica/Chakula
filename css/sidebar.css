@@ -53,12 +53,19 @@
 .confirm-btns:hover {
   background-color: #37474F;
 }
-#sidebar-controls input {
+#add-contact-form input {
   height: 100%;
   background-color: transparent;
   border: none;
   box-shadow: none;
   color: #a9a9a9;
+  width: 78%;
+  display: inline-block;
+}
+#add-contact-form img {
+  height: 20px;
+  width: 20px;
+  margin: 0;
 }
 #sidebar li label {
   margin: 0 0 0 -14px;

@@ -12,34 +12,3 @@ label {
   font-weight: normal;
   padding: 6px;
 }
-#chat-interface-wrapper {
-  transition: padding-left .3s;
-}
-#chat-interface-wrapper.active-sidebar {
-  transition: padding-left .3s;
-  padding-left: 180px;
-}
-#chat-info {
-  text-align: center;
-  height: 10%;
-}
-#chat-info label{
-  margin-top: 6px;
-}
-#chat-box {
-  height: 80%;
-}
-#chat-input {
-  margin: 0;
-  padding: 0;
-  height: 10%;
-}
-#chat-input input{
-  resize: none;
-  height: 100%;
-  border-radius: 0;
-  border-color: #455A64;
-}
-#contact-controls img {
-  float:right;
-}
