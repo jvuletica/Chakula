@@ -1,16 +1,7 @@
 <div id="sidebar" ng-class="{'active-sidebar' : isSidebarActive}">
   <div ng-switch on="condition" id="sidebar-controls">
-    <div ng-switch-default>
-      <img id="control-btn" src="../images/menu3.png" ng-click="toggleSidebar()">
-      <label ng-click="log()" ng-bind="username">Chakula</label>
-      <img id="add-contact-btn" src="../images/addcontact2.png" ng-click="toggleAddContact()">
-    </div>
-    <div ng-switch-when="add-contact">
-      <form id="add-contact-form" ng-submit="addContact(target_contact)">
-        <input class="form-control" type="text" placeholder="Add contact..." ng-model="target_contact">
-        <img ng-click="toggleAddContact()" src="../images/back.png">
-      </form>
-    </div>
+    <div ng-switch-default default-sidebar-control></div>
+    <div ng-switch-when="add-contact" add-contact-control></div>
   </div>
   <ul>
     <li sent-requests ng-repeat="(name, object) in sent_requests"></li>

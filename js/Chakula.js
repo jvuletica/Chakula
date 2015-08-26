@@ -6,6 +6,8 @@ Chakula.controller("InterfaceController", InterfaceController);
 Chakula.directive("receivedRequests", receivedRequests);
 Chakula.directive("sentRequests", sentRequests);
 Chakula.directive("myContacts", myContacts);
+Chakula.directive("defaultSidebarControl", defaultSidebarControl);
+Chakula.directive("addContactControl", addContactControl);
 
 var configFunction = function($routeProvider) {
   $routeProvider.

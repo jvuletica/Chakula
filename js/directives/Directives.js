@@ -25,3 +25,21 @@ var myContacts = function() {
     templateUrl: "my_contacts.html"
   }
 }
+var defaultSidebarControl = function() {
+  return {
+    restrict: "A",
+    link: function(scope, el, attrs) {
+
+    },
+    templateUrl: "default_sidebar_control.html"
+  }
+}
+var addContactControl = function() {
+  return {
+    restrict: "A",
+    link: function(scope, el, attrs) {
+
+    },
+    templateUrl: "add_contact_control.html"
+  }
+}
