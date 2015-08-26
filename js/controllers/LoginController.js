@@ -17,7 +17,13 @@ var LoginController = function($scope, $location, ConnectionService) {
 	$scope.login_btn_string = "Login";
 	$scope.connectToServer = function () {
 		if($scope.username) {
-			ConnectionService.connectToServer($scope.username, changeInterfaceOnConnect, reportError);
+			if($scope.username.length > 3) {
+				ConnectionService.
+					connectToServer($scope.username, changeInterfaceOnConnect, reportError);
+			}
+			else {
+				reportError("Username shorter than 4 characters!");
+			}
 		}
 		else reportError("Username empty!");
 	};

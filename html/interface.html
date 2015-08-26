@@ -11,9 +11,6 @@
         <img ng-click="toggleAddContact()" src="../images/back.png">
       </form>
     </div>
-    <div ng-switch-when="result" id="contact-request-result">
-      <label ng-bind="contact_request_result"></label>
-    </div>
   </div>
   <ul>
     <li sent-requests ng-repeat="(name, object) in sent_requests"></li>

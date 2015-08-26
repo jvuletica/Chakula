@@ -56,13 +56,13 @@ var InterfaceController = function ($scope, ConnectionService) {
 		console.log($scope);
 	};
 	$scope.addContact = function(target_contact) {
-		ConnectionService.sendContactRequest(target_contact, receiveRequestResponse, receiveMessage);
+		ConnectionService.
+			sendContactRequest(target_contact, receiveRequestResponse, receiveMessage);
 		updateInterfaceWithContactRequest(target_contact);
-		$scope.condition = "result";
-		$scope.contact_request_result = "Sent request.";
+		$scope.condition = "";
 		setTimeout(function() {
 			$scope.$apply(function() {
-				$scope.condition = "";
+
 			});
 		}, 1500);
 	};
