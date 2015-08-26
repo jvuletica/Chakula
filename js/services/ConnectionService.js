@@ -1,13 +1,28 @@
 var ConnectionService = function() {
   var connection_list = {};
-  this.connectToServer = function(username, changeInterface) {
+  this.connectToServer = function(username, changeInterface, reportError) {
     this.username = username;
     this.peer = new Peer(username, {key: "iw4hkfqau6f4unmi"});
     this.peer.on("open", function() {
       changeInterface();
     });
     this.peer.on("error", function(error) {
-      alert(error);
+      switch (error.type) {
+        case "invalid-id":
+          reportError("Illegal characters in username!");
+          break;
+        case "network":
+          reportError("Can't establish connection.");
+          break;
+        case "server-error":
+          reportError("Unable to reach server.");
+          break;
+        case "unavailable-id":
+          reportError("Username not available.");
+          break;
+        default:
+          alert("Unexpected error (" + error + ")");
+      }
     });
   };
   this.listenForConnections = function(reportNewConnection, receiveMessage) {

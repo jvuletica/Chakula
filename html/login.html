@@ -9,6 +9,6 @@
     <form class="col-xs-8 col-sm-8 col-md-8" ng-submit="connectToServer()">
       <input type="text" class="form-control" placeholder="Username" ng-model="username">
     </form>
-    <button ng-click="connectToServer()" class="col-xs-4 col-sm-4 col-md-4 btn">Login</button>
+    <button ng-click="connectToServer()" class="col-xs-4 col-sm-4 col-md-4 btn" ng-class="{'error': is_error}"ng-bind="login_btn_string"></button>
   </div>
 </div>
