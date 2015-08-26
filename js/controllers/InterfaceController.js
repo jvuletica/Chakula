@@ -2,6 +2,7 @@ var InterfaceController = function ($scope, ConnectionService) {
 	$scope.received_requests = {};
 	$scope.sent_requests = {};
 	$scope.my_contacts = {};
+	$scope.username = ConnectionService.username;
 	function reportNewConnection(peer_name) {
 		$scope.$apply(function() {
 			$scope.received_requests[peer_name] = {};

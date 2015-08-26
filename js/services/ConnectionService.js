@@ -1,6 +1,7 @@
 var ConnectionService = function() {
   var connection_list = {};
   this.connectToServer = function(username, changeInterface) {
+    this.username = username;
     this.peer = new Peer(username, {key: "iw4hkfqau6f4unmi"});
     this.peer.on("open", function() {
       changeInterface();
