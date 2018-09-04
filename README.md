@@ -1,5 +1,5 @@
 # Chakula
-in progress... (nw, webrtc/peerjs, angularjs)
+nw, webrtc/peerjs, angularjs
 
 In order to test, download nwjs and point "main" to main.html.
 ![Screenshot](http://i.imgur.com/T7SKo1o.png)
